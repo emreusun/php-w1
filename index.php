@@ -66,9 +66,9 @@ function getEmail()
 //     getEmail()
 // );
 
-$firstName = getFirstName();
-$lastName = getLastName();
-$email = getEmail();
+$firstName = getPostData('first_name');
+$lastName = getPostData('last_name');
+$email = getPostData('email');
 
 
   
