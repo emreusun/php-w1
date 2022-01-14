@@ -24,22 +24,24 @@
 //     'email' => 'emreusun@mail.com',
 // ]
 // var_dump($_POST);
-$firstName = null;
-$lastName = null;
-$email = null;
+// $firstName = null;
+// $lastName = null;
+// $email = null;
+function getPostData($key) {
+    if (array_key_exists($key, $_POST)) {
+        return $_POST[$key];
+    }
+    return "";
+}
+
+
 
 // this functions returns the first name from the form if it has been submitted, 
 // otherwise it returns null.
 
 function getFirstName() 
 {   
-    $firstName = null;
-
-    if (array_key_exists('first_name', $_POST)) {
-        $firstName = $_POST['first_name'];
-    }
-
-    return $firstName;
+    return getPostData('first_name');
 }
 
 // this function returns the submitted last name
@@ -48,24 +50,14 @@ function getFirstName()
 // * preferred
 function getLastName() 
 {   
-    $lastName = null;
-
-    if (array_key_exists('last_name', $_POST)) {
-        return $lastName = $_POST['last_name'];
-    }
-    return "";
+    return getPostData('last_name');
 
 }
 // return the submitted getEmail also uses early return
 
 function getEmail() 
 {   
-    $email = null;
-
-    if (array_key_exists('email', $_POST)) {
-        return $email = $_POST['email'];
-    }
-        return "";
+    return getPostData('email');
     
 
 }
