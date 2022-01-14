@@ -27,6 +27,10 @@
 // $firstName = null;
 // $lastName = null;
 // $email = null;
+function shouldShowSubmissionData()
+{
+    return count($_POST) > 0;
+}
 function getPostData($key) {
     if (array_key_exists($key, $_POST)) {
         return $_POST[$key];
@@ -39,36 +43,18 @@ function getPostData($key) {
 // this functions returns the first name from the form if it has been submitted, 
 // otherwise it returns null.
 
-function getFirstName() 
-{   
-    return getPostData('first_name');
-}
 
-// this function returns the submitted last name
-// or "" an empty string if nothing is submitted
-// uses an early return (check a condition and return if it is true)
-// * preferred
-function getLastName() 
-{   
-    return getPostData('last_name');
-
-}
-// return the submitted getEmail also uses early return
-
-function getEmail() 
-{   
-    return getPostData('email');
-    
-
-}
 
 // var_dump(
 //     getEmail()
 // );
 
+$shouldShowSubmission = shouldShowSubmissionData();
 $firstName = getPostData('first_name');
 $lastName = getPostData('last_name');
 $email = getPostData('email');
+$comments = getPostData('comments');
+$phone = getPostData('phone');
 
 
   
@@ -89,11 +75,18 @@ $email = getPostData('email');
             <input type="text" name="email">
             <br>
             <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+            <input type="text" name="phone">
             <button type="submit">
                 Submit
             </button>
         </form>
+        <?php
+        if ($shouldShowSubmission) {
+        ?>
+    
+        
         <div>
+        <h2>Your Submission</h2>
             <p>
                 <?php echo $firstName; 
                 ?>
@@ -109,8 +102,19 @@ $email = getPostData('email');
                 <?php echo $email; 
                 ?>
             </p>
+            <p>
+                <?php echo $comments; 
+                ?>
+            </p>
+            <p>
+                <?php echo $phone; 
+                ?>
+            </p>
 
         </div>
+        <?php 
+        } 
+        ?>
     </body>
 
 
