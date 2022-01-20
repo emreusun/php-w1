@@ -1,5 +1,7 @@
 <?php
 
+include 'includes/funcitons.php';
+
 // $myVariable = 'some sentence';
 
 // var_dump($myVariable);
@@ -27,16 +29,6 @@
 // $firstName = null;
 // $lastName = null;
 // $email = null;
-function shouldShowSubmissionData()
-{
-    return count($_POST) > 0;
-}
-function getPostData($key) {
-    if (array_key_exists($key, $_POST)) {
-        return $_POST[$key];
-    }
-    return "";
-}
 
 
 
@@ -67,14 +59,14 @@ $phone = getPostData('phone');
 <html>
     <head></head>
     <body>
-        <form action="http://localhost:8888/week%20one/index.php" method="POST">
+        <form action="index.php" method="POST">
             <input type="text" name="first_name">
             <br>
             <input type="text" name="last_name">
             <br>
             <input type="text" name="email">
             <br>
-            <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+            <!-- <textarea name="comments" id="comments" cols="30" rows="10"></textarea> -->
             <input type="text" name="phone">
             <button type="submit">
                 Submit
