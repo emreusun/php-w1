@@ -1,6 +1,9 @@
 <?php
-
+session_start();
+include 'functions.php';
 include 'validation.php';
+
+$_SESSION['errors'] = [];
 
 // ensure there's a place for the user to be redirected back to
 if (! array_key_exists('HTTP_REFERER' , $_SERVER)) {
@@ -13,19 +16,43 @@ if (count($_POST) <= 0) {
    die;
 }
 
+$_SESSION['submission'] = $_POST;
 
 $firstName = getPostData('first_name');
 $lastName = getPostData('last_name');
 $email = getPostData('email');
 
-var_dump($email);
-var_dump(
-    isEmailValid($email)
+$errors = [];
+
+
+if (!  isFirstNameValid($firstName)) {
+    $errors['first_name'] = 'First name is not invalid';
+}
+if (!  isLastNameValid($lastName)) {
+    $errors['last_name'] = 'Last name is not invalid';
+}
+if (!  isEmailValid($email)) {
+    $errors['email'] = 'Email is not invalid';
+}
+if (count($errors) > 0) {
+    $_SESSION['errors'] = $errors;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    die;
+}
+$to = 'emre95neo@gmail.com';
+$subject = 'New submission';
+$message = "new messafe from site!";
+$message = "";
+$message .= "Firstname: " . $firstName . "\r\n";
+$message .= "Lastname: " . $lastName . "\r\n";
+$message .= "Email: " . $email . "\r\n";
+$mail(
+    $to,
+    $subject,
+    $message
 );
 
-
-// var_dump($_POST);
-
-die;
+// var_dump('here');
+// die;
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

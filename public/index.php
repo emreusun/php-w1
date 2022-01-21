@@ -1,8 +1,11 @@
 <?php
 
+session_start();
 include '../includes/functions.php';
 
 $shouldShowSubmission = shouldShowSubmissionData();
+
+var_dump($_SESSION);
 
 // $myVariable = 'some sentence';
 
