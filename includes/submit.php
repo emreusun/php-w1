@@ -46,12 +46,13 @@ $message = "";
 $message .= "Firstname: " . $firstName . "\r\n";
 $message .= "Lastname: " . $lastName . "\r\n";
 $message .= "Email: " . $email . "\r\n";
-$mail(
-    $to,
-    $subject,
-    $message
-);
-
+// $mail(
+//     $to,
+//     $subject,
+//     $message
+// );
+$_SESSION['submission'] = [];
+// $_SESSION['suceess_message'] = "yes!";
 // var_dump('here');
 // die;
 

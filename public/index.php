@@ -4,8 +4,17 @@ session_start();
 include '../includes/functions.php';
 
 $shouldShowSubmission = shouldShowSubmissionData();
+$firstNameError = getErrorFromSession('first_name');
+$lastNameError = getErrorFromSession('last_name');
+$emailError = getErrorFromSession('email');
 
-var_dump($_SESSION);
+$firstNameSubmission = getSubmissionFromSession('first_name');
+$lastNameSubmission = getSubmissionFromSession('last_name');
+$emailSubmission = getSubmissionFromSession('email');
+$_SESSION['errors'] = [];
+$_SESSION['submission'] = [];
+
+
 
 // $myVariable = 'some sentence';
 
@@ -62,12 +71,24 @@ var_dump($_SESSION);
 <html>
     <head></head>
     <body>
+        <?php
+        include '../includes/partials/navigation.php';
+        ?>
         <form action="../includes/submit.php" method="POST">
-            <input type="text" name="first_name">
+            <input type="text" name="first_name" value="<?php echo $firstNameSubmission; ?>">
+            <span style="color:red" >
+            <?php echo $firstNameError; ?>
+            </span>
             <br>
-            <input type="text" name="last_name">
+            <input type="text" name="last_name" value="<?php echo $lastNameSubmission; ?>">
+            <span style="color:red" >
+            <?php echo $lastNameError; ?>
+            </span>
             <br>
-            <input type="text" name="email">
+            <input type="text" name="email" value="<?php echo $emailSubmission; ?>">
+            <span style="color:red" >
+            <?php echo $emailError; ?>
+            </span>
             <br>
             <!-- <textarea name="comments" id="comments" cols="30" rows="10"></textarea> -->
             <!-- <input type="text" name="phone"> -->
