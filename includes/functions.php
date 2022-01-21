@@ -1,6 +1,6 @@
 <?php
 
-echo "Hello World";
+
 function shouldShowSubmissionData()
 {
     return count($_POST) > 0;

@@ -1,6 +1,8 @@
 <?php
 
-include 'includes/funcitons.php';
+include '../includes/functions.php';
+
+$shouldShowSubmission = shouldShowSubmissionData();
 
 // $myVariable = 'some sentence';
 
@@ -41,12 +43,10 @@ include 'includes/funcitons.php';
 //     getEmail()
 // );
 
-$shouldShowSubmission = shouldShowSubmissionData();
-$firstName = getPostData('first_name');
-$lastName = getPostData('last_name');
-$email = getPostData('email');
-$comments = getPostData('comments');
-$phone = getPostData('phone');
+
+
+// $comments = getPostData('comments');
+// $phone = getPostData('phone');
 
 
   
@@ -59,7 +59,7 @@ $phone = getPostData('phone');
 <html>
     <head></head>
     <body>
-        <form action="index.php" method="POST">
+        <form action="../includes/submit.php" method="POST">
             <input type="text" name="first_name">
             <br>
             <input type="text" name="last_name">
@@ -67,7 +67,7 @@ $phone = getPostData('phone');
             <input type="text" name="email">
             <br>
             <!-- <textarea name="comments" id="comments" cols="30" rows="10"></textarea> -->
-            <input type="text" name="phone">
+            <!-- <input type="text" name="phone"> -->
             <button type="submit">
                 Submit
             </button>
